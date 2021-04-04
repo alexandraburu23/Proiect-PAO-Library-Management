@@ -1,14 +1,14 @@
-#Library Management
+# Library Management
 Un proiect Java ce simulează funcționarea unei biblioteci. Aplicația pune la dispoziție obiecte de tip client, autor, carte etc., și funcționalități specifice unei biblioteci.
 
-#Termene de Predare
+# Termene de Predare
 1. Etapa I: 31 martie
    
 2. Etapa II: 28 aprilie 
    
 3. Etapa III: 26 mai
 
-#Etapa 1
+# Etapa 1
 
 1.Definirea sistemului:
 
@@ -21,7 +21,7 @@ Un proiect Java ce simulează funcționarea unei biblioteci. Aplicația pune la 
 - cel puțin o clasa serviciu care sa expună operațiile
 - o clasa main din care sunt făcute apeluri către servicii
 
-#Etapa 2
+# Etapa 2
 
 1.Extindeți proiectul din prima etapa prin realizarea persistentei utilizând fișiere.
 - Se vor realiza fișiere de tip csv (comma separated values) pentru cel puțin 4 dintre clasele definite in prima etapa.
@@ -31,7 +31,7 @@ Un proiect Java ce simulează funcționarea unei biblioteci. Aplicația pune la 
 2.Realizarea unui serviciu de audit
 - se va realiza un serviciu care sa scrie într-un fișier de tip CSV de fiecare data când este executata una dintre acțiunile descrise in prima etapa. Structura fișierului: nume_actiune, timestamp
 
-#Etapa 3
+# Etapa 3
 
 Înlocuiți serviciile realizate în etapa a II-a cu servicii care sa asigure persistenta utilizând baza de date folosind JDBC.
 
