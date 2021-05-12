@@ -1,3 +1,5 @@
+package models;
+
 import java.util.Objects;
 
 public abstract class Person implements Comparable<Person>{

@@ -1,3 +1,7 @@
+package services;
+
+import models.Reader;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

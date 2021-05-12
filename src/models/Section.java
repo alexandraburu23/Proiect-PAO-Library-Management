@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+package models;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -7,7 +8,10 @@ public class Section {
     private int section_id;
     private String name;
 
-
+    public Section(){
+        this.section_id = 0;
+        this.name = "";
+    }
     public Section(int section_id, String name) {
         this.section_id = section_id;
         this.name = name;
@@ -38,7 +42,7 @@ public class Section {
 
     @Override
     public String toString() {
-        return "Section{" +
+        return "models.Section{" +
                 "section_id=" + section_id +
                 ", name='" + name + '\'' +
                 '}';

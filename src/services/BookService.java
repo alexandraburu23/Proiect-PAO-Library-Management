@@ -1,6 +1,8 @@
+package services;
+
+import models.Book;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class BookService {
@@ -47,7 +49,7 @@ public class BookService {
             }
         }
         if(!deleted){
-            System.out.println("This Book does not exist in this list");
+            System.out.println("This models.Book does not exist in this list");
         }
     }
 
@@ -56,13 +58,14 @@ public class BookService {
         for(Book book : listBooks)
             System.out.println(book.toString());
     }
-    public Book returnBook(Integer id){
-        for(Book b: listBooks)
-        {   if(b.getBook_id()==id){
-            System.out.println(id);
-            return b;
+    public Book returnBook(Integer id, String type){
 
-        }
+        for(Book b: listBooks)
+        {
+            if(b.getBook_id()==id && b.bookType().equals(type)){
+                System.out.println(id);
+                return b;
+            }
         }
         return null;
     }

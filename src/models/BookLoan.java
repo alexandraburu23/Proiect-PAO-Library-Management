@@ -1,30 +1,39 @@
+package models;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BookLoan {
-    protected LocalDate loanDate;
-    protected Reader loaner;
-    protected List<Book> loanedBooks;
-    protected LocalDate returnDate;
+    private LocalDate loanDate;
+    private Reader loaner;
+    private Book loanedBook;
+    private LocalDate returnDate;
 
-    public BookLoan( Reader loaner, List<Book> loanedBooks, LocalDate returnDate) {
+    public BookLoan() {
+        this.loanDate = LocalDate.now();
+        this.loaner = new Reader();
+        this.loanedBook = new Book();
+        this.returnDate = LocalDate.now();
+    }
+
+    public BookLoan(Reader loaner, Book loanedBook, LocalDate returnDate) {
         this.loanDate = LocalDate.now();
         this.loaner = loaner;
-        this.loanedBooks = new ArrayList<>(loanedBooks);
+        this.loanedBook = new Book(loanedBook);
         this.returnDate = returnDate;
     }
-    public BookLoan(LocalDate loanDate, Reader loaner, List<Book> loanedBooks, LocalDate returnDate) {
+    public BookLoan(LocalDate loanDate, Reader loaner, Book loanedBook, LocalDate returnDate) {
         this.loanDate = loanDate;
         this.loaner = loaner;
-        this.loanedBooks = new ArrayList<>(loanedBooks);
+        this.loanedBook = new Book(loanedBook);
         this.returnDate = returnDate;
     }
 
     public BookLoan(BookLoan bookloan){
         this.loanDate = bookloan.getLoanDate();
         this.loaner = bookloan.getLoaner();
-        this.loanedBooks = new ArrayList<>(bookloan.getLoanedBooks());
+        this.loanedBook = bookloan.getLoanedBook();
         this.returnDate = bookloan.getReturnDate();
     }
 
@@ -44,12 +53,12 @@ public class BookLoan {
         this.loaner = loaner;
     }
 
-    public List<Book> getLoanedBooks() {
-        return loanedBooks;
+    public Book getLoanedBook() {
+        return loanedBook;
     }
 
-    public void setLoanedBooks(List<Book> loanedBooks) {
-        this.loanedBooks = loanedBooks;
+    public void setLoanedBook(Book loanedBook) {
+        this.loanedBook = loanedBook;
     }
 
     public LocalDate getReturnDate() {
@@ -62,10 +71,10 @@ public class BookLoan {
 
     @Override
     public String toString() {
-        return "BookLoan{" +
+        return "models.BookLoan{" +
                 "loanDate=" + loanDate +
                 ", loaner=" + loaner +
-                ", loanedBooks=" + loanedBooks +
+                ", loanedBook=" + loanedBook +
                 ", returnDate=" + returnDate +
                 '}';
     }

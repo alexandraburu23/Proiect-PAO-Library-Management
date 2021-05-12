@@ -1,11 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+package models;
 
 public class Author extends Person{
 
 
-
+    public Author(){
+        super(0,"");
+    }
     public Author(int id, String name) {
         super(id,name);
 
@@ -16,7 +16,7 @@ public class Author extends Person{
 
     @Override
     public String toString() {
-        return "Author{" +
+        return "models.Author{" +
 
                 "id=" + id +
                 ", name='" + name + '\'' +

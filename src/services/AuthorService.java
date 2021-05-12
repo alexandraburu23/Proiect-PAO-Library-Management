@@ -1,3 +1,6 @@
+package services;
+
+import models.Author;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +20,7 @@ public class AuthorService {
         return instance;
     }
 
-    public void addAuthor(Author addedAuthor) {
+    public boolean addAuthor(Author addedAuthor) {
         boolean exists = false;
         for(Author a : listAuthors)
             if (a.equals(addedAuthor)) {
@@ -26,8 +29,9 @@ public class AuthorService {
             }
         if(!exists) {
             listAuthors.add(new Author(addedAuthor));
-
+            return true;
         }
+        return false;
     }
 
 

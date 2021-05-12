@@ -1,9 +1,15 @@
+package models;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Reader extends Person {
 
     protected LocalDate registrationDate;
+    public Reader(){
+        super(0,"");
+        this.registrationDate = null;
+    }
     public Reader ( int id, String name) {
         super(id,name);
         this.registrationDate = LocalDate.now();
@@ -25,14 +31,12 @@ public class Reader extends Person {
         this.registrationDate = registrationDate;
     }
 
+    public String readerType(){
+        return "Reader";
+    }
 
-    @Override
     public String toString() {
-        return "Reader{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", registrationDate=" + registrationDate +
-                '}';
+        return  id + "," + name + "," + registrationDate;
     }
 
     @Override

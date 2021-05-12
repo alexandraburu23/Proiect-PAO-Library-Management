@@ -1,4 +1,4 @@
-import java.util.Objects;
+package models;
 
 public class Book {
     protected int book_id;
@@ -7,6 +7,13 @@ public class Book {
     protected Integer pages;
     protected Section section;
 
+    public Book(){
+        this.book_id = 0;
+        this.name = "";
+        this.author = new Author();
+        this.pages=0;
+        this.section = new Section();
+    }
     public Book(int book_id, String name, Author author, Integer pages, Section section) {
         this.book_id = book_id;
         this.name = name;
@@ -61,9 +68,13 @@ public class Book {
         this.section = section;
     }
 
+
+    public String bookType(){
+        return "Book";
+    }
     @Override
     public String toString() {
-        return "Book{" +
+        return "models.Book{" +
                 "book_id=" + book_id +
                 ", name='" + name + '\'' +
                 ", author=" + author +
@@ -80,10 +91,6 @@ public class Book {
         return book_id==book.getBook_id() && pages.equals(book.getPages()) && name.equals(book.getName()) && author.equals(book.getAuthor()) && section.equals(book.getSection());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(book_id, name, author, pages, section);
-    }
 
 
 }
