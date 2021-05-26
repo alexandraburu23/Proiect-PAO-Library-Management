@@ -1,7 +1,7 @@
 package models;
 
 public class Book {
-    protected int book_id;
+    protected Integer book_id;
     protected String name;
     protected Author author;
     protected Integer pages;
@@ -28,7 +28,7 @@ public class Book {
         this.pages = book.getPages();
         this.section = book.getSection();
     }
-    public int getBook_id() {
+    public Integer getBook_id() {
         return book_id;
     }
 

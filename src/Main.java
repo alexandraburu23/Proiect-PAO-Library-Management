@@ -1,3 +1,4 @@
+import DBservice.*;
 import csv.CSVReadingService;
 import csv.CSVWritingService;
 import models.*;
@@ -11,7 +12,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -80,7 +80,7 @@ public class Main {
         System.out.println("8.Adaugati un imprumut");
         System.out.println("9.Stergeti o carte");
         System.out.println("10.Stergeti un imprumut");
-        System.out.println("11.Exit");
+        System.out.println("11.Editati baza de date");
         String option=br.readLine();
         if(option.equals("1")){
             csvWriter.writeAudit("SHOW","Book", LocalDate.now());
@@ -253,6 +253,115 @@ public class Main {
             break;
         }
         index+=1;
+        }
+        SectionDBService sectionService = new SectionDBService();
+        AuthorDBService authorService = new AuthorDBService();
+        LoanDBService loanService = new LoanDBService();
+        BookDBService bookService = new BookDBService();
+        ReaderDBService readerService = new ReaderDBService();
+
+//        List<Book> books = sectionService.retrieveAllSectionBooks();
+//        System.out.println("Am preluat cartile: ");
+//        System.out.println(books);
+//
+//        Section section = new Section("Lifestyle");
+//        int sectionId = sectionService.addNewSection(section);
+//        System.out.println("Am adaugat libraria cu id-ul " + sectionId);
+
+        while (true) {
+            System.out.println("Meniu");
+            System.out.println("1.Aratati lista de carti");
+            System.out.println("2.Aratati lista de autori");
+            System.out.println("3.Aratati lista de cititori");
+            System.out.println("4.Aratati lista de imprumuturi");
+            System.out.println("5.Aratati lista de sectiuni");
+            System.out.println("6.Adaugati o carte");
+            System.out.println("7.Adaugati un autor");
+            System.out.println("8.Adaugati un cititor");
+            System.out.println("9.Adaugati un imprumut");
+            System.out.println("10.Adaugati o sectiune");
+            System.out.println("11.Exit");
+            String option = br.readLine();
+            if (option.equals("1")) {
+                csvWriter.writeAudit("SHOW", "Book", LocalDate.now());
+                System.out.println(bookService.readAllBooks());
+            } else if (option.equals("2")) {
+                csvWriter.writeAudit("SHOW", "Author", LocalDate.now());
+                System.out.println(authorService.retrieveAllAuthors());
+            } else if (option.equals("3")) {
+                csvWriter.writeAudit("SHOW", "Reader", LocalDate.now());
+                System.out.println(readerService.readAllReaders());
+            } else if (option.equals("4")) {
+                csvWriter.writeAudit("SHOW", "BookLoan", LocalDate.now());
+                System.out.println(loanService.readAllLoans());
+            }else if (option.equals("5")) {
+                csvWriter.writeAudit("SHOW", "Section", LocalDate.now());
+                System.out.println(sectionService.retrieveAllSections());
+            } else if (option.equals("6")) {
+                csvWriter.writeAudit("INSERT", "Book", LocalDate.now());
+                Integer id = numberLines("authors.csv");
+                System.out.println("Nume");
+                String name = br.readLine();
+                System.out.println("Pagini");
+                Integer pg = parseInt(br.readLine());
+                System.out.println("Introduceti datele autorului");
+                System.out.println("Id");
+                Integer aid = parseInt(br.readLine());
+                System.out.println("Nume");
+                String aname = br.readLine();
+                System.out.println("Introduceti datele sectiunii");
+                System.out.println("Id");
+                Integer sid = parseInt(br.readLine());
+                System.out.println("Nume");
+                String sname = br.readLine();
+                Section newsection = new Section(sid, sname);
+                Author newauthor = new Author(aid, aname);
+                Book newbook = new Book(id, name, newauthor, pg, newsection);
+                bookService.addNewBook(newbook);
+
+
+            } else if (option.equals("7")) {
+                csvWriter.writeAudit("INSERT", "Author", LocalDate.now());
+                Integer aid = numberLines("src/authors.csv");
+                System.out.println("Nume");
+                String aname = br.readLine();
+                Author newauthor = new Author(aid, aname);
+                authorService.addNewAuthor(newauthor);
+
+            } else if (option.equals("8")) {
+                csvWriter.writeAudit("INSERT", "Reader", LocalDate.now());
+                Integer id = numberLines("src/readers.csv");
+                System.out.println("Nume");
+                String name = br.readLine();
+                LocalDate ld = LocalDate.now();
+                Reader newreader = new Reader(id, name, ld);
+                readerService.addNewReader(newreader);
+
+            } else if (option.equals("9")) {
+                csvWriter.writeAudit("INSERT", "BookLoan", LocalDate.now());
+                System.out.println("Va aratam lista de carti,selectati id-ul ");
+                System.out.println(bookService.readAllBooks());
+                Integer selectedId = parseInt(br.readLine());
+                Book selectedBook = bookService.selectBook(selectedId);
+                System.out.println(readerService.readAllReaders());
+                Integer readerId = parseInt(br.readLine());
+                Reader selectedReader = readerService.selectReader(readerId);
+                LocalDate ld = LocalDate.now();
+                LocalDate rd = ld.plusMonths(2);
+                BookLoan newloan = new BookLoan(ld, selectedReader, selectedBook, rd);
+                loanService.addNewLoan(newloan);
+
+            } else if (option.equals("10")) {
+                csvWriter.writeAudit("INSERT", "SECTION", LocalDate.now());
+                Integer aid = numberLines("src/section.csv");
+                System.out.println("Nume");
+                String sname = br.readLine();
+                Section newsection = new Section(aid, sname);
+                sectionService.addNewSection(newsection);
+
+            } else {
+                break;
+            }
         }
     }
 }

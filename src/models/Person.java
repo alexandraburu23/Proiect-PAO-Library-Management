@@ -13,7 +13,7 @@ public abstract class Person implements Comparable<Person>{
 
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

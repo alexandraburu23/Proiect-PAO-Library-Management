@@ -17,7 +17,6 @@ public class Author extends Person{
     @Override
     public String toString() {
         return "models.Author{" +
-
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

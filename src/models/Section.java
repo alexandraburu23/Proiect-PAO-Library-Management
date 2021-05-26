@@ -5,25 +5,24 @@ import java.util.Objects;
 
 
 public class Section {
-    private int section_id;
+    private Integer section_id;
     private String name;
 
     public Section(){
         this.section_id = 0;
         this.name = "";
     }
+
     public Section(int section_id, String name) {
         this.section_id = section_id;
         this.name = name;
 
     }
-    public Section(int section_id, String name, List<Book> listBooks) {
-        this.section_id = section_id;
+    public Section( String name) {
         this.name = name;
-
     }
 
-    public int getSection_id() {
+    public Integer getSection_id() {
         return section_id;
     }
 
